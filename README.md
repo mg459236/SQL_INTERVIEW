@@ -1,6 +1,8 @@
+
 # SQL_INTERVIEW
 PRACTIVE SET FOR INTERVIEW
 Table: Activity
+QUESTION Average Time of Process per Machine
 
 +----------------+---------+
 | Column Name    | Type    |
