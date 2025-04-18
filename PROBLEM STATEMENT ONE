@@ -65,3 +65,27 @@ There are 3 machines running 2 processes each.
 Machine 0's average time is ((1.520 - 0.712) + (4.120 - 3.140)) / 2 = 0.894
 Machine 1's average time is ((1.550 - 0.550) + (1.420 - 0.430)) / 2 = 0.995
 Machine 2's average time is ((4.512 - 4.100) + (5.000 - 2.500)) / 2 = 1.456
+=========SOLUTION=============
+SELECT 
+    machine_id,
+    ROUND(AVG(end_time - start_time), 3) AS processing_time
+FROM (
+    SELECT 
+        a.machine_id,
+        a.process_id,
+        MAX(CASE WHEN a.activity_type = 'start' THEN a.timestamp END) AS start_time,
+        MAX(CASE WHEN a.activity_type = 'end' THEN a.timestamp END) AS end_time
+    FROM 
+        Activity a
+    GROUP BY 
+        a.machine_id, a.process_id
+) AS subquery
+GROUP BY 
+    machine_id;
+
+
+
+
+
+
+
